@@ -1,80 +1,56 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { RecommendMovieProps, MovieDetailProps, MovieVideoProps } from '../types/Types';
-const useMovies = (id: number) => {
-  const [movieRecommend, setMovieRecommend] = React.useState<RecommendMovieProps | null>(null);
 
-  const [movieDetail, setMovieDetail] = React.useState<MovieDetailProps>({
-    id: 0,
-    overview: '',
-    poster_path: '',
-    title: '',
-    original_title: '',
-    genres: [
-      {
-        id: 0,
-        name: '',
-      }
-    ],
-    tagline: '',
+const useMovies = (id: number) => {
+  const [movieData, setMovieData] = React.useState<{
+    movieDetail: MovieDetailProps | null;
+    movieRecommend: RecommendMovieProps | null;
+    trailerUrl: MovieVideoProps | null;
+  }>({
+    movieDetail: null,
+    movieRecommend: null,
+    trailerUrl: null,
   });
-  const [trailerUrl, setTrailerUrl] = React.useState<MovieVideoProps | null>(null);
-  // const [movieImages, setMovieImages] = React.useState([]);
+
   const APIKEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
-  //firebaseのデータ取得後にmovie.idを使いdetailのAPIで取得
   useEffect(() => {
-    const fetchMovieDetail = async () => {
-      try {
-        if(id){
-          const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=ja`;
-          const res = await fetch(url);
-          const data = await res.json();
-          setMovieDetail(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMovieDetail();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchMovieRecommend = async () => {
+    const fetchData = async () => {
       try {
         if (id) {
-          const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKEY}&language=ja&page=1`;
-          const res = await fetch(url);
-          const data = await res.json();
-          setMovieRecommend(data);
+
+          const detailUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=ja`;
+          const recommendUrl = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKEY}&language=ja&page=1`;
+          const videoUrl = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${APIKEY}&language=ja`;
+
+          // 3つの異なるAPIエンドポイントに対して非同期なHTTPリクエストを行う
+          const [detailRes, recommendRes, videoRes] = await Promise.all([
+            fetch(detailUrl),
+            fetch(recommendUrl),
+            fetch(videoUrl),
+          ]);
+          // レスポンスデータを格納
+          const [detailData, recommendData, videoData] = await Promise.all([
+            detailRes.json(),
+            recommendRes.json(),
+            videoRes.json(),
+          ]);
+          // レスポンスから取得したデータをステートに設定
+          setMovieData({
+            movieDetail: detailData,
+            movieRecommend: recommendData,
+            trailerUrl: videoData,
+          });
         }
       } catch (error) {
         console.error(error);
       }
     };
-    fetchMovieRecommend();
+
+    fetchData();
   }, [id]);
 
-  useEffect(() => {
-    const fetchMovieDetail = async () => {
-      try {
-        if(id){
-          const url = `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${APIKEY}&language=ja`;
-          const res = await fetch(url);
-          const trailerUrl = await res.json();
-          setTrailerUrl(trailerUrl);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMovieDetail();
-  }, [id]);
+  return movieData;
+};
 
-  return {
-    movieDetail,
-    movieRecommend,
-    trailerUrl
-  }
-}
-
-export default useMovies
+export default useMovies;
