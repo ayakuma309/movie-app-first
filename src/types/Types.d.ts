@@ -22,3 +22,16 @@ export interface MovieItemProps {
 export interface RecommendProps {
   id: number;
 }
+
+export interface RecommendMovie {
+  results: {
+    genre_ids: number[];
+    id: number;
+    original_title: string;
+    overview: string;
+    poster_path: string;
+    title: string;
+  }[];
+}
+
+

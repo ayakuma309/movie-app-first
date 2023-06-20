@@ -1,50 +1,23 @@
 import { NextPage, GetServerSideProps } from 'next';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RecommendProps } from '@/types/Types';
+import useMovies from '@/hooks/useMovies';
 
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
-
-  const [movieDetail, setMovieDetail] = React.useState({});
-  const [movieRecommend, setMovieRecommend] = React.useState({});
-  // const [movieImages, setMovieImages] = React.useState([]);
-  const APIKEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
-
-  //firebaseのデータ取得後にmovie.idを使いdetailのAPIで取得
-  useEffect(() => {
-    const fetchMovieDetail = async () => {
-      try {
-        if(id){
-          const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=ja`;
-          const res = await fetch(url);
-          const data = await res.json();
-          setMovieDetail(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMovieDetail();
-  }, [id]);
-
-  useEffect(() => {
-    const fetchMovieRecommend = async () => {
-      try {
-        if(id){
-          const url = `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${APIKEY}&language=ja&page=1`;
-          const res = await fetch(url);
-          const data = await res.json();
-          setMovieRecommend(data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMovieRecommend();
-  }, [id]);
-  console.log(movieRecommend);
+  const { movieDetail, movieRecommend } = useMovies(id);
+  const { results } = movieRecommend;
+  console.log(movieRecommend.results);
   return (
-    <div>{id}</div>
+    <div>
+      {results && results.map((movie) => (
+        <div key={movie.id}>
+          <div>{movie.title}</div>
+          <div>{movie.poster_path}</div>
+          <div>{movie.overview}</div>
+        </div>
+      ))}
+    </div>
   );
 };
 
