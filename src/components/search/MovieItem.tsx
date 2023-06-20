@@ -1,12 +1,16 @@
 import React from 'react'
-import { MovieItemProps } from '../../types/Types';
+import { MovieItemProps, RecommendProps } from '../../types/Types';
 import { NextPage } from 'next';
-
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 const RecommendItem: NextPage<MovieItemProps> = ({ movies }) => {
   const router = useRouter();
+
+  const onClickSelect = (movie: RecommendProps) => {
+    router.push(`/movie/${movie.id}`);
+  }
+
   return (
     <div className="flex flex-wrap mx-auto justify-center">
       {movies && movies
@@ -22,6 +26,9 @@ const RecommendItem: NextPage<MovieItemProps> = ({ movies }) => {
             <p>{movie.title}</p>
             <button
               className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-neutral-900 transition duration-500 ease-in-out transform bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-xl hover:from-indigo-300 hover:to-indigo-600 hover:text-white"
+              onClick={() => {
+                onClickSelect(movie);
+              }}
               >
               おすすめを探す！
             </button>
