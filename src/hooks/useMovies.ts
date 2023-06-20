@@ -1,11 +1,21 @@
 import React, { useEffect } from 'react'
-import { RecommendMovie } from '../types/Types';
+import { RecommendMovie, MovieDetailProps } from '../types/Types';
 const useMovies = (id: number) => {
   const [movieRecommend, setMovieRecommend] = React.useState<RecommendMovie>(
     {
       results: [],
     });
-  const [movieDetail, setMovieDetail] = React.useState({});
+  const [movieDetail, setMovieDetail] = React.useState<MovieDetailProps>({
+    id: 0,
+    overview: '',
+    poster_path: '',
+    title: '',
+    genres: [{
+      id: 0,
+      name: ''
+    }],
+    tagline: '',
+  });
   // const [movieImages, setMovieImages] = React.useState([]);
   const APIKEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 

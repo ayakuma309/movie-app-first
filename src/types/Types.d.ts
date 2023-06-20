@@ -25,7 +25,6 @@ export interface RecommendProps {
 
 export interface RecommendMovie {
   results: {
-    genre_ids: number[];
     id: number;
     original_title: string;
     overview: string;
@@ -34,4 +33,14 @@ export interface RecommendMovie {
   }[];
 }
 
-
+export interface  MovieDetailProps {
+  id: number;
+  overview: string;
+  poster_path: string;
+  title: string;
+  genres: [{
+    id: number;
+    name: string;
+  }];
+  tagline: string;
+}
