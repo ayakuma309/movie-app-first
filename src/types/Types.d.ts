@@ -23,7 +23,7 @@ export interface RecommendProps {
   id: number;
 }
 
-export interface RecommendMovie {
+export interface RecommendMovieProps {
   results: {
     id: number;
     original_title: string;
@@ -38,9 +38,18 @@ export interface  MovieDetailProps {
   overview: string;
   poster_path: string;
   title: string;
+  original_title: string;
   genres: [{
     id: number;
     name: string;
   }];
   tagline: string;
+}
+
+export interface MovieVideoProps{
+  results: {
+    id: number;
+    key: string;
+    name: string;
+  }[];
 }

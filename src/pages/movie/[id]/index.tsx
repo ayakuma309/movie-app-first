@@ -7,22 +7,42 @@ import Layout from '@/components/common/Layout';
 
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
-  const { movieDetail, movieRecommend } = useMovies(id);
-  const { results } = movieRecommend;
+  const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
 
   return (
-    <Layout title="おすすめの映画">
+    <Layout title="Recommended movies">
       <div className='w-8/12  mx-auto font-mono'>
         <div className='mt-24'>
+          <div className='text-4xl font-bold text-center'>Recommended movies</div>
+          <div className='flex flex-wrap justify-center mt-10'>
+            {movieRecommend && movieRecommend.results.map((movie) => (
+              <div key={movie.id}>
+                <div>
+                  <Image
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                    width={100}
+                    height={100}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
           {movieDetail &&
             <div className='mx-auto'>
-              <div className='text-4xl font-bold text-center'>{movieDetail.title}</div>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
-                alt={movieDetail.title}
-                width={200}
-                height={200}
-              />
+              <div className='text-4xl font-bold text-center my-10'>
+
+                {movieDetail.original_title}
+              </div>
+              {movieDetail.title}
+              {movieDetail.poster_path &&
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
+                  alt={movieDetail.title}
+                  width={200}
+                  height={200}
+                />
+              }
               <div className='flex'>
                 {movieDetail.genres.map((genre) => (
                   <div key={genre.id}>{genre.name}</div>
@@ -32,18 +52,17 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
               <div>{movieDetail.overview}</div>
             </div>
           }
-        </div>
-        <div className='flex flex-wrap justify-center mt-24'>
-          {results && results.map((movie) => (
-            <div key={movie.id}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title}
-                width={100}
-                height={100}
+          {trailerUrl && (
+            <div>
+              <iframe
+                src={`https://www.youtube.com/embed/${trailerUrl.results[0].key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
             </div>
-          ))}
+          )}
         </div>
       </div>
     </Layout>
