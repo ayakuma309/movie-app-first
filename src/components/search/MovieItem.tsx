@@ -23,9 +23,9 @@ const RecommendItem: NextPage<MovieItemProps> = ({ movies }) => {
               width={200}
               height={300}
             />
-            <p>{movie.title}</p>
+            <p className="text-center font-bold text-gray-900 text-lg my-2">{movie.title}</p>
             <button
-              className="flex items-center justify-center w-full px-10 py-4 text-base font-medium text-center text-neutral-900 transition duration-500 ease-in-out transform bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-xl hover:from-indigo-300 hover:to-indigo-600 hover:text-white"
+              className="flex items-center justify-center w-full my-2 px-10 py-4 text-base font-medium text-center text-neutral-900 transition duration-500 ease-in-out transform bg-gradient-to-r from-indigo-600 to-indigo-300 rounded-xl hover:from-indigo-300 hover:to-indigo-600 hover:text-white"
               onClick={() => {
                 onClickSelect(movie);
               }}

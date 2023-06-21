@@ -5,17 +5,36 @@ import useMovies from '@/hooks/useMovies';
 import Image from 'next/image';
 import Layout from '@/components/common/Layout';
 import RecommendModal from '@/components/recommend/RecommendModal';
+import ShareButton from 'react-share/lib/ShareButton';
+import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
+
+  const movieListShare = React.useMemo(() => {
+    if (!movieRecommend || !movieDetail) return null;
+    // 上位5件のおすすめ映画タイトル
+    const recommendedMovieTitles = movieRecommend.slice(0, 5).map((movie) => movie.title).join('\n');
+    return `${movieDetail.title}\n${recommendedMovieTitles}\n`;
+  }, [movieDetail, movieRecommend]);
+
 
   return (
     <Layout title="Recommended movies">
       <div className='w-9/12  mx-auto font-mono'>
         <div className='mt-24'>
           <div className='text-4xl font-bold text-center'>Recommended movies</div>
-          <div className='flex flex-wrap justify-center mt-10'>
+          <div className='text-center mt-5'>
+            <TwitterShareButton
+              title={`${movieListShare}`}
+              hashtags={["MovieWizard", "おすすめ映画"]}
+              url={`https://movie-wizard.vercel.app/movie/${id}`}
+            >
+              <TwitterIcon className="text-white font-bold rounded-full" size={"32px"}/>
+            </TwitterShareButton>
+          </div>
+          <div className='flex flex-wrap justify-center mt-5'>
             {movieRecommend && movieRecommend.map((movie) => (
               <RecommendModal
                 key={movie.id}
