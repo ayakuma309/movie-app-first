@@ -9,14 +9,14 @@ import RecommendModal from '@/components/recommend/RecommendModal';
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
-  console.log(movieDetail);
+
   return (
     <Layout title="Recommended movies">
       <div className='w-9/12  mx-auto font-mono'>
         <div className='mt-24'>
           <div className='text-4xl font-bold text-center'>Recommended movies</div>
           <div className='flex flex-wrap justify-center mt-10'>
-            {movieRecommend && movieRecommend.results.map((movie) => (
+            {movieRecommend && movieRecommend.map((movie) => (
               <RecommendModal
                 key={movie.id}
                 id={movie.id}
@@ -49,7 +49,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
                   ))}
                 </div>
                 <div className='my-5'>{movieDetail.overview}</div>
-                {movieDetail.tagline && <div className='text-2xl font-bold text-center text-gray-600'>「{movieDetail.tagline}」</div>}
+                <div className='text-2xl font-bold text-center text-gray-600 mb-5'>{movieDetail.tagline}</div>
               </div>
             }
             {trailerUrl?.results[0]?.key && (

@@ -4,7 +4,7 @@ import { RecommendMovieProps, MovieDetailProps, MovieVideoProps } from '../types
 const useMovies = (id: number) => {
   const [movieData, setMovieData] = React.useState<{
     movieDetail: MovieDetailProps | null;
-    movieRecommend: RecommendMovieProps | null;
+    movieRecommend: RecommendMovieProps[] | null;
     trailerUrl: MovieVideoProps | null;
   }>({
     movieDetail: null,
@@ -38,7 +38,7 @@ const useMovies = (id: number) => {
           // レスポンスから取得したデータをステートに設定
           setMovieData({
             movieDetail: detailData,
-            movieRecommend: recommendData,
+            movieRecommend: recommendData.results,
             trailerUrl: videoData,
           });
         }

@@ -24,13 +24,11 @@ export interface RecommendProps {
 }
 
 export interface RecommendMovieProps {
-  results: {
-    id: number;
-    original_title: string;
-    overview: string;
-    poster_path: string;
-    title: string;
-  }[];
+  id: number;
+  original_title: string;
+  overview: string;
+  poster_path: string;
+  title: string;
 }
 
 export interface  MovieDetailProps {
