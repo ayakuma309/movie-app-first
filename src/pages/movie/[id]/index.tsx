@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
 import Image from 'next/image';
 import YouTube from 'react-youtube';
@@ -8,12 +8,13 @@ import useMovies from '@/hooks/useMovies';
 //components
 import Layout from '@/components/common/Layout';
 import RecommendModal from '@/components/recommend/RecommendModal';
+import { Circles } from 'react-loader-spinner';
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
 
   //share用の変数を定義
-  const movieListShare = React.useMemo(() => {
+  const movieListShare = useMemo(() => {
     if (!movieRecommend || !movieDetail) return null;
     // 上位5件のおすすめ映画タイトル
     const recommendedMovieTitles = movieRecommend.slice(0, 5).map((movie) => movie.title).join('\n');
@@ -30,6 +31,29 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
       autoplay: 0,
     },
   };
+
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (movieDetail && movieRecommend && trailerUrl) {
+      setLoading(false); // データの取得が完了したらloadingをfalseに設定
+    }
+  }, [movieDetail, movieRecommend, trailerUrl]);
+
+  if (loading) {
+    return(
+      <div className="flex items-center justify-center h-screen">
+        <Circles
+          height="80"
+          width="80"
+          color="#A55EAD"
+          ariaLabel="circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      </div>
+    );
+  }
 
   return (
     <Layout title="Recommended movies">
