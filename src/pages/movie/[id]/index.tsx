@@ -1,17 +1,18 @@
-import { NextPage, GetServerSideProps } from 'next';
 import React from 'react';
+import { NextPage, GetServerSideProps } from 'next';
+import Image from 'next/image';
+import YouTube from 'react-youtube';
+import { TwitterIcon, TwitterShareButton } from 'react-share';
 import { RecommendProps } from '@/types/Types';
 import useMovies from '@/hooks/useMovies';
-import Image from 'next/image';
+//components
 import Layout from '@/components/common/Layout';
 import RecommendModal from '@/components/recommend/RecommendModal';
-import ShareButton from 'react-share/lib/ShareButton';
-import { TwitterIcon, TwitterShareButton } from 'react-share';
-
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
 
+  //share用の変数を定義
   const movieListShare = React.useMemo(() => {
     if (!movieRecommend || !movieDetail) return null;
     // 上位5件のおすすめ映画タイトル
@@ -19,6 +20,16 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
     return `${movieDetail.title}\n${recommendedMovieTitles}\n`;
   }, [movieDetail, movieRecommend]);
 
+
+  const trailerURL = trailerUrl?.results[0]?.key;
+  // YouTubeプレーヤーのオプション設定
+  const opts = {
+    height: '290',
+    width: '100%',
+    playerVars: {
+      autoplay: 0,
+    },
+  };
 
   return (
     <Layout title="Recommended movies">
@@ -73,13 +84,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
             }
             {trailerUrl?.results[0]?.key && (
               <div className="mx-auto">
-                <iframe
-                  src={`https://www.youtube.com/embed/${trailerUrl.results[0]?.key}`}
-                  title="YouTube video player"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                <YouTube videoId={trailerURL} opts={opts} />
               </div>
             )}
           </div>
