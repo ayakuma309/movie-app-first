@@ -42,6 +42,23 @@ body{
   margin: 10px;
 }
 
+.modal-card{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-height: 650px;
+  overflow-y: scroll;
+  padding: 20px;
+  margin: 0 auto;
+  background: rgba(250, 238, 238, 0.897);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15.9px);
+  -webkit-backdrop-filter: blur(15.9px);
+}
+
 .movie_tag{
   display: inline-block;
 	margin: 0 .1em .6em 0;
