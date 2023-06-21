@@ -7,7 +7,7 @@ import Footer  from './Footer';
 const Layout: React.FC<CommonTypeProps> = (
   {
     children,
-    title = 'Cinema Wizard',
+    title = 'Movie Wizard',
   }
 ) => {
   return (

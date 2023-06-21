@@ -11,7 +11,7 @@ const SearchForm = ({ query, setQuery, setMovies }: Props) => {
   const APIKEY = process.env.NEXT_PUBLIC_MOVIE_API_KEY;
 
   const searchMovies = async () => {
-    const url = `https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&language=ja&query=${query}&page=1`;
+    const url = `https://api.themoviedb.org/3/search/movie?api_key=${APIKEY}&include_adult=false&language=ja&query=${query}&page=1`;
 
     try {
         const res = await fetch(url);

@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer: React.FC =() => {
   return (
-    <footer className="text-gray-900 body-font">
+    <footer className="body-font mt-24">
       <div className="container px-5 pt-14 mx-auto flex items-center flex-col">
         <div className="flex-grow flex flex-wrap text-center">
           <div className="w-full px-4">
@@ -11,7 +11,7 @@ const Footer: React.FC =() => {
               <li>
                 <Link
                   href="/terms"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-gray-600 hover:text-gray-400"
                 >
                   利用規約
                 </Link>
@@ -19,14 +19,14 @@ const Footer: React.FC =() => {
               <li>
                 <Link
                   href="/privacyPolicy"
-                  className="text-gray-600 hover:text-gray-800"
+                  className="text-gray-600 hover:text-gray-400"
                 >
                   プライバシーポリシー
                 </Link>
               </li>
             </nav>
-            <p className="text-gray-600 text-sm text-center mb-2">
-              © 2023 Cinema Wizard
+            <p className="text-gray-400 text-sm text-center mb-2">
+              © 2023 Movie Wizard
             </p>
           </div>
         </div>
