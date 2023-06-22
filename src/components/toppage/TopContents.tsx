@@ -6,7 +6,7 @@ const TopContents: React.FC = () => {
       <div className="container relative z-10 flex items-center px-6 py-32 mx-auto md:px-12 xl:py-40">
         <div className="relative z-10 flex flex-col items-center w-full">
           <h1 className="mt-4 font-extrabold leading-tight text-center text-white text-7xl sm:text-8xl">
-            cinema wizard
+            Movie Wizard
           </h1>
           <p className="mt-4 text-center text-black">
             あなたが選んだ映画からおすすめの映画を提案します
