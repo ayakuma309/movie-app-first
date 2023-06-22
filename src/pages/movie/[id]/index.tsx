@@ -9,6 +9,7 @@ import useMovies from '@/hooks/useMovies';
 import Layout from '@/components/common/Layout';
 import RecommendModal from '@/components/recommend/RecommendModal';
 import { Circles } from 'react-loader-spinner';
+import Link from 'next/link';
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
@@ -38,7 +39,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
       setLoading(false); // データの取得が完了したらloadingをfalseに設定
     }
   }, [movieDetail, movieRecommend, trailerUrl]);
-
+  console.log(movieRecommend?.length)
   if (loading) {
     return(
       <div className="flex items-center justify-center h-screen">
@@ -59,27 +60,42 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
     <Layout title="Recommended movies">
       <div className='w-9/12  mx-auto font-mono'>
         <div className='mt-24'>
-          <div className='text-4xl font-bold text-center'>Recommended movies</div>
-          <div className='text-center mt-5'>
-            <TwitterShareButton
-              title={`${movieListShare}`}
-              hashtags={["MovieWizard", "おすすめ映画"]}
-              url={`https://movie-wizard.vercel.app/movie/${id}`}
-            >
-              <TwitterIcon className="text-white font-bold rounded-full" size={"32px"}/>
-            </TwitterShareButton>
-          </div>
-          <div className='flex flex-wrap justify-center mt-5'>
-            {movieRecommend && movieRecommend.map((movie) => (
-              <RecommendModal
-                key={movie.id}
-                id={movie.id}
-                title={movie.title}
-                poster_path={movie.poster_path}
-                overview={movie.overview}
-              />
-            ))}
-          </div>
+          {movieRecommend?.length == 0 ? (
+            <div>
+              <p className='text-center text-black'>おすすめはありませんでした</p>
+              <Link href={`/search`}>
+                <button
+                  className="flex items-center justify-center  px-10 py-4 text-base font-medium text-center text-neutral-600 transition duration-500 ease-in-out transform bg-white mx-auto rounded-xl my-2"
+                >
+                  選び直す
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <div className='text-4xl font-bold text-center'>Recommended movies</div>
+              <div className='text-center mt-5'>
+                <TwitterShareButton
+                  title={`${movieListShare}`}
+                  hashtags={["MovieWizard", "おすすめ映画"]}
+                  url={`https://movie-wizard.vercel.app/movie/${id}`}
+                >
+                  <TwitterIcon className="text-white font-bold rounded-full" size={"32px"}/>
+                </TwitterShareButton>
+              </div>
+              <div className='flex flex-wrap justify-center mt-5'>
+                {movieRecommend && movieRecommend.map((movie) => (
+                  <RecommendModal
+                    key={movie.id}
+                    id={movie.id}
+                    title={movie.title}
+                    poster_path={movie.poster_path}
+                    overview={movie.overview}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
           <div className='glass_card my-24'>
             {movieDetail &&
               <div>
