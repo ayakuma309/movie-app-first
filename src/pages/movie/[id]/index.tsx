@@ -39,7 +39,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
       setLoading(false); // データの取得が完了したらloadingをfalseに設定
     }
   }, [movieDetail, movieRecommend, trailerUrl]);
-  console.log(movieRecommend?.length)
+
   if (loading) {
     return(
       <div className="flex items-center justify-center h-screen">
@@ -57,7 +57,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
   }
 
   return (
-    <Layout title="Recommended movies">
+    <Layout title="Movie Wizard">
       <div className='w-9/12  mx-auto font-mono'>
         <div className='mt-24'>
           {movieRecommend?.length == 0 ? (
