@@ -14,15 +14,23 @@ const Layout: React.FC<CommonTypeProps> = (
     <div className="min-h-screen items-center justify-center font-mono">
       <Head>
         <title>{title}</title>
-        <meta name="description" content="映画見つけたい!!" />
+        <meta name="og:title" property="og:title" content={title} />
+        <meta name="description" content="映画のおすすめを..." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <meta
-          name="og:title"
-          property="og:title"
-          content={title}
+          property="og:image"
+          key="ogImage"
+          content={`https://movie-wizard.vercel.app/ogp.png`}
         />
         <meta
-          name="description"
-          content="映画見つけたい!!"
+          name="twitter:card"
+          key="twitterCard"
+          content="summary_large_image"
+        />
+        <meta
+          name="twitter:image"
+          key="twitterImage"
+          content={`https://movie-wizard.vercel.app/ogp.png`}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
