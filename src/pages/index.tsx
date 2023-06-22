@@ -5,7 +5,7 @@ import React
 from "react"
 const Home:NextPage = () => {
   return (
-    <Layout title='Cinema Wizard'>
+    <Layout title='Movie Wizard'>
       <div className='container flex flex-col items-center sm:max-w-7xl'>
         <div className='container mt-24'>
           <TopContents />
