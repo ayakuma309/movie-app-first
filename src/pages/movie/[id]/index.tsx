@@ -76,7 +76,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
               <div className='text-4xl font-bold text-center'>Recommended movies</div>
               <div className='text-center mt-5'>
                 <TwitterShareButton
-                  title={`${movieListShare}`}
+                  title={`${movieListShare}\n ${`https://movie-wizard.vercel.app/`}\n`}
                   hashtags={["MovieWizard", "おすすめ映画"]}
                   url={`https://movie-wizard.vercel.app/movie/${id}`}
                 >
