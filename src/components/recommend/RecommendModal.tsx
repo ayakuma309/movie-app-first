@@ -14,7 +14,7 @@ const RecommendModal: React.FC<MovieInfo> = ({id, poster_path, title, overview }
         className="glass_card glass_recommend_card"
         onClick={() => setOpen(true)}
       >
-        <Image
+        <img
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt={title}
           width={100}
@@ -27,7 +27,7 @@ const RecommendModal: React.FC<MovieInfo> = ({id, poster_path, title, overview }
       </div>
       <Modal open={open} onClose={() => setOpen(false)}>
         <div className="modal-card">
-          <Image
+          <img
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
             alt={title}
             width={200}

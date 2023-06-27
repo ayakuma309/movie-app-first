@@ -20,7 +20,7 @@ const RecommendItem: NextPage<MovieItemProps> = ({ movies }) => {
         .filter((movie) => movie.poster_path)
         .map((movie) => (
           <div className="card_movie mx-auto" key={movie.id}>
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
               alt={movie.title}
               width={200}

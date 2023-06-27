@@ -105,7 +105,7 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
                   </div>
                 </div>
                 {movieDetail.poster_path &&
-                  <Image
+                  <img
                     src={`https://image.tmdb.org/t/p/w500/${movieDetail.poster_path}`}
                     alt={movieDetail.title}
                     width={200}
