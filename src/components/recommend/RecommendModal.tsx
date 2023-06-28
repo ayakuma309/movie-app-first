@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react'
-import Image from 'next/image'
 import { MovieInfo } from '@/types/Types'
 //styles
 import { Modal } from "@mui/material";

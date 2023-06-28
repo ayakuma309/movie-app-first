@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { NextPage, GetServerSideProps } from 'next';
-import Image from 'next/image';
 import YouTube from 'react-youtube';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 import { RecommendProps } from '@/types/Types';

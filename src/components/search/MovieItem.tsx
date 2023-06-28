@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { MovieItemProps, RecommendProps } from '../../types/Types';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import { Circles } from 'react-loader-spinner';
 
 const RecommendItem: NextPage<MovieItemProps> = ({ movies }) => {
