@@ -2,70 +2,70 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  background: linear-gradient(to bottom, #E9B9D5 60%, #A55EAD, #0A087D);
-  color: rgb(254, 254, 254);
+body {
+    background: linear-gradient(to bottom, #e9b9d5 60%, #a55ead, #0a087d);
+    color: rgb(254, 254, 254);
 }
 .card_movie {
-  margin: 0 1rem 2rem;
-  padding: 1rem;
-  width: 300px;
-  overflow: scroll;
-  background: #f8f4f3;
-  border-radius: 12px;
-  transition: all 0.2s ease;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    margin: 0 1rem 2rem;
+    padding: 1rem;
+    width: 300px;
+    overflow: scroll;
+    background: #f8f4f3;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-.glass_card{
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 20px;
-  margin: 5px auto;
-  text-align: center;
-  background:  #e9b9d5c1;
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.1px);
-  -webkit-backdrop-filter: blur(5.1px);
-  border: 1px solid rgba(255, 255, 255, 0.54);
-}
-
-.glass_recommend_card{
-  width: 200px;
-  height: 250px;
-  margin: 10px;
+.glass_card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+    margin: 5px auto;
+    text-align: center;
+    background: #e9b9d5c1;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.1px);
+    -webkit-backdrop-filter: blur(5.1px);
+    border: 1px solid rgba(255, 255, 255, 0.54);
 }
 
-.modal-card{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  max-height: 650px;
-  overflow-y: scroll;
-  padding: 20px;
-  margin: 0 auto;
-  background: rgba(250, 238, 238, 0.897);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(15.9px);
-  -webkit-backdrop-filter: blur(15.9px);
+.glass_recommend_card {
+    width: 200px;
+    height: 250px;
+    margin: 10px;
 }
 
-.movie_tag{
-  display: inline-block;
-	margin: 0 .1em .6em 0;
-	padding: .6em;
-	line-height: 1;
-	text-decoration: none;
-	color: #A55EAD;
-	border: 1px solid #A55EAD;
-  border-radius: 10px;
+.modal-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-height: 650px;
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 0 auto;
+    background: rgba(250, 238, 238, 0.897);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15.9px);
+    -webkit-backdrop-filter: blur(15.9px);
+}
+
+.movie_tag {
+    display: inline-block;
+    margin: 0 0.1em 0.6em 0;
+    padding: 0.6em;
+    line-height: 1;
+    text-decoration: none;
+    color: #a55ead;
+    border: 1px solid #a55ead;
+    border-radius: 10px;
 }
