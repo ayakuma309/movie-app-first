@@ -51,3 +51,7 @@ export interface MovieVideoProps {
         name: string;
     }[];
 }
+
+export interface MovieImageProps {
+    file_path: string;
+}
