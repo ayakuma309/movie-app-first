@@ -11,7 +11,7 @@ import { Circles } from "react-loader-spinner";
 import Link from "next/link";
 
 const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
-    const { movieDetail, movieRecommend, trailerUrl } = useMovies(id);
+    const { movieDetail, movieRecommend, trailerUrl, movieImage } = useMovies(id);
 
     //share用の変数を定義
     const movieListShare = useMemo(() => {
@@ -36,10 +36,10 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
 
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        if (movieDetail && movieRecommend && trailerUrl) {
+        if (movieDetail && movieRecommend && trailerUrl && movieImage) {
             setLoading(false); // データの取得が完了したらloadingをfalseに設定
         }
-    }, [movieDetail, movieRecommend, trailerUrl]);
+    }, [movieDetail, movieRecommend, trailerUrl, movieImage]);
 
     if (loading) {
         return (
@@ -103,6 +103,31 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
                             </div>
                         </div>
                     )}
+                    <div className="flex flex-col p-4 md:pt-8">
+                        {movieImage && movieImage.length > 0 && (
+                            <div className="overflow-x-scroll flex scrollhide">
+                                {movieImage.map((image, index) => (
+                                    <div
+                                        className="w-80"
+                                        style={{ minWidth: "20rem" }}
+                                        key={index}
+                                    >
+                                        <img
+                                            placeholder="blur"
+                                            alt="image in not available"
+                                            src={`https://image.tmdb.org/t/p/original/${image.file_path}`}
+                                            width={500}
+                                            height={300}
+                                            style={{
+                                                maxWidth: "100%",
+                                                height: "auto",
+                                            }}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
                     <div className="glass_card my-24">
                         {movieDetail && (
                             <div>
