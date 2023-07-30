@@ -56,7 +56,6 @@ const RecommendMovie: NextPage<RecommendProps> = ({ id }: RecommendProps) => {
             </div>
         );
     }
-    console.log("akakaka")
 
     return (
         <Layout title="Movie Wizard">
