@@ -35,10 +35,11 @@ const Recommends:NextPage<RecommendMoviesProps> = ({ movieRecommend, movieListSh
                   hashtags={["MovieWizard", "おすすめ映画"]}
                   url={`https://movie-wizard.vercel.app/movie/${id}`}
               >
-                  <TwitterIcon
-                      className="text-white font-bold rounded-full"
-                      size={"32px"}
-                  />
+                  <div
+                    className="text-white font-bold rounded-full mr-5 bg-black  py-1 px-2"
+                  >
+                    \uD835\uDD4F
+                  </div>
               </TwitterShareButton>
           </div>
           <div className="flex flex-wrap justify-center mt-5">
